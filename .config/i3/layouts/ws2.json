@@ -1,0 +1,21 @@
+{
+    "border": "none",
+    "current_border_width": 0,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1053,
+       "width": 959,
+       "x": 961,
+       "y": 27
+    },
+    "name": "Ranger Cheatsheet – RDD - Vivaldi",
+    "percent": 1,
+    "swallows": [
+       {
+          "class": "^Vivaldi\\-stable$",
+          "window_role": "^browser$"
+       }
+    ],
+    "type": "con"
+}
+
