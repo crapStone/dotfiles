@@ -1,4 +1,4 @@
-# ctapStones dotfiles
+# crapStones dotfiles
 
 > coming soon
 
