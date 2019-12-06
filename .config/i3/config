@@ -240,10 +240,10 @@ gaps outer -2
 exec_always --no-startup-id "~/.config/polybar/launch.sh"
 
 # set workspace layouts
-exec --no-startup-id "i3-msg 'workspace 1 ; append_layout /home/andi/.config/i3/layouts/ws1.json'"
-exec --no-startup-id "i3-msg 'workspace 2 ; append_layout /home/andi/.config/i3/layouts/ws2.json'"
-exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/andi/.config/i3/layouts/ws9.json'"
-exec --no-startup-id "i3-msg 'workspace 10; append_layout /home/andi/.config/i3/layouts/ws10.json'"
+exec --no-startup-id "i3-msg 'workspace 1 ; append_layout $HOME/.config/i3/layouts/ws1.json'"
+exec --no-startup-id "i3-msg 'workspace 2 ; append_layout $HOME/.config/i3/layouts/ws2.json'"
+exec --no-startup-id "i3-msg 'workspace 9; append_layout $HOME/.config/i3/layouts/ws9.json'"
+exec --no-startup-id "i3-msg 'workspace 10; append_layout $HOME/.config/i3/layouts/ws10.json'"
 
 # Volume control
 bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master 2%+,2%+ unmute"
