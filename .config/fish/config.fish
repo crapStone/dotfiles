@@ -1,7 +1,7 @@
 # set makeflags
 export MAKEFLAGS='-j'(nproc)
 
-export TERMINAL=alacritty
+#export TERMINAL=alacritty
 
 export PAGER="most"
 
