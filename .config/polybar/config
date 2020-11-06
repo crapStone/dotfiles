@@ -34,7 +34,7 @@ alert = $(xrdb:color3:#bd2c40)
 [bar/bar0]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 27
+height = 2.5%
 ;offset-x = 1%
 ;offset-y = 1%
 ;radius = 6.0
@@ -63,22 +63,22 @@ font-4 = FontAwesome:size=10;0
 
 modules-left = i3
 ;modules-center = date
-modules-right = backlight-acpi alsa xkeyboard memory memory-abs cpu cpu-load wlan battery temperature date powermenu
+modules-right = backlight-acpi alsa xkeyboard memory memory-abs cpu cpu-freq cpu-load temperature wlan battery date powermenu
 
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -98,8 +98,6 @@ format-prefix-underline = ${colors.secondary}
 label-layout = %layout%
 label-layout-underline = ${colors.secondary}
 
-label-indicator-padding = 2
-label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
@@ -203,12 +201,21 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
-label = %percentage:2%% %percentage-sum%
+label = %percentage:02%% %percentage-sum:03%
 
 [module/cpu-load]
 type=custom/script
 interval=30
 exec="cat /proc/loadavg | cut -d ' ' -f 1"
+format = <label>
+label = %output%
+
+[module/cpu-freq]
+type=custom/script
+interval=2
+exec="cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq | sed 's/.\{3\}$//' | sort -n | tail -n 1"
+format = <label>
+label = %output:04%
 
 
 [module/memory]
@@ -261,8 +268,8 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date = " %Y/%m/%d"
-date-alt = " %Y-%m-%d"
+date = " 12.0%y/%m/%d"
+date-alt = " 12.0%y-%m-%d"
 
 time = %H:%M:%S
 time-alt = %H:%M
@@ -364,9 +371,9 @@ animation-discharging-framerate = 750
 [module/temperature]
 interval = 2
 type = internal/temperature
-#thermal-zone = 10
+thermal-zone = 10
 warn-temperature = 80
-hwmon-path = /sys/devices/virtual/hwmon/hwmon4/temp1_input
+#hwmon-path = /sys/devices/virtual/hwmon/hwmon4/temp1_input
 
 format = <ramp> <label>
 format-underline = #f50a4d
@@ -410,6 +417,12 @@ menu-2-0 = power off
 menu-2-0-exec = poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+[module/ice-status]
+type=custom/script
+interval=10
+exec="/usr/bin/python /home/andi/Documents/coding/python/ice-status/ice-status.py -s"
+
 
 [settings]
 screenchange-reload = true

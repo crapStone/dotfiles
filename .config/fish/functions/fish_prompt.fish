@@ -37,15 +37,18 @@ set __fish_git_prompt_char_upstream_equal ' 💯 '
 function fish_prompt
   set last_status $status
 
-  echo -n "$USER@"
+  set_color $fish_color_user
+  echo -n "$USER"
+  set_color $fish_color_normal
+  echo -n "@"
+  set_color $fish_color_host
   printf '%s ' (hostname)
 
   set_color $fish_color_cwd
   printf '%s' (prompt_pwd)
   set_color normal
 
-  printf '%s ' (__fish_git_prompt)
-  echo -n "> "
+  printf '%s> ' (__fish_git_prompt)
 
   set_color normal
 end

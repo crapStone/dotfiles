@@ -3,6 +3,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -59,6 +60,8 @@ bindsym $mod+Shift+$left move left
 # Move focused workspace to monitor
 bindsym $mod+Shift+control+$left move workspace to output left
 bindsym $mod+Shift+control+$right move workspace to output right
+bindsym $mod+Shift+control+$up move workspace to output up
+bindsym $mod+Shift+control+$down move workspace to output down
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -177,9 +180,11 @@ bindsym $mod+control+$left workspace prev
 
 # workspace assignments (get infos with `xprop`)
 #assign [class="Vivaldi*"] $ws2
+assign [class="Deezer"] $ws7
+assign [class="Thunderbird"] $ws8
+assign [class="discord"] $ws9
 assign [class="TelegramDesktop"] $ws10
 assign [class="whats-app*"] $ws10
-assign [class="discord"] $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -242,6 +247,7 @@ exec_always --no-startup-id "~/.config/polybar/launch.sh"
 # set workspace layouts
 exec --no-startup-id "i3-msg 'workspace 1 ; append_layout $HOME/.config/i3/layouts/ws1.json'"
 exec --no-startup-id "i3-msg 'workspace 2 ; append_layout $HOME/.config/i3/layouts/ws2.json'"
+exec --no-startup-id "i3-msg 'workspace 8; append_layout $HOME/.config/i3/layouts/ws8.json'"
 exec --no-startup-id "i3-msg 'workspace 9; append_layout $HOME/.config/i3/layouts/ws9.json'"
 exec --no-startup-id "i3-msg 'workspace 10; append_layout $HOME/.config/i3/layouts/ws10.json'"
 
@@ -261,17 +267,22 @@ bindsym XF86MonBrightnessUp exec "light -A 5"
 bindsym XF86MonBrightnessDown exec "light -U 5"
 
 # Keyboard brightness controls
-bindsym XF86KbdBrightnessUp exec "kbd_backlight up"
-bindsym XF86KbdBrightnessDown exec "kbd_backlight down"
+#bindsym XF86KbdBrightnessUp exec "kbd_backlight up"
+#bindsym XF86KbdBrightnessDown exec "kbd_backlight down"
+
+# Screenshot
+bindsym $mod+Shift+s exec "flameshot gui"
+#bindsym $alt+Print exec "gnome-screenshot --cipboard --window"
+#bindsym Print exec "gnome-screenshot --cipboard"
 
 # enable transparancy
-exec --no-startup-id "compton -f"
+exec --no-startup-id "picom -f -i 1.0 --vsync --backend xr_glx_hybrid --inactive-dim 0.2 --inactive-opacity 0.9"
 
 # desktop_background
 #exec_always "feh --bg-scale ~/Pictures/wallpaper.png"
 exec --no-startup-id "wal -R"
 
-exec_always --no-startup-id "/bin/sh ~/.config/i3/i3rc"
+#exec_always --no-startup-id "/bin/sh ~/.config/i3/i3rc"
 
 # autostart applications
 exec --no-startup-id "dex -a
