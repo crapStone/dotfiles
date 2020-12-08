@@ -90,7 +90,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # lockscreen
-set $lockscreen_cmd "betterlockscreen -l dimb -t Bratzn\ Weg!"
+set $lockscreen_cmd "betterlockscreen -l dim -t Bratzn\ Weg!"
 #bindsym $mod+l exec --no-startup-id "i3lock -e -i ~/Pictures/lockscreen.png"
 #bindsym $mod+l exec --no-startup-id "i3lock -e -k -B=0.1 --radius=150 --ring-width=10 --datesize=30 --timesize=42 --datecolor=808080ff --timecolor=808080ff --verifsize=38 --wrongsize=38"
 bindsym $mod+l exec --no-startup-id $lockscreen_cmd
